@@ -93,7 +93,3 @@ References:
 [1] Xi Chen, Yan Duan, Rein Houthooft, John Schulman, Ilya Sutskever, Pieter
  Abbeel: "InfoGAN: Interpretable Representation Learning by
 Information Maximizing Generative Adversarial Nets", https://arxiv.org/abs/1606.03657
-
-[2] Jichao Zhang, Fan Zhong, Gongze Cao, Xueying Qin: "ST-GAN: Unsupervised Facial Image
- Semantic
-Transformation Using Generative Adversarial Networks", http://proceedings.mlr.press/v77/zhang17c/zhang17c.pdf
