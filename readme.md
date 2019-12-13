@@ -74,7 +74,7 @@ After we achieved a useful mapping between image parameters and code
   CelebA. With smaller modifications we managed to generate the results
    presented below.
    
-   <img align="center" src="demo/tony.jpg" width="207" height="201"><img align="center" src="demo/img_varied_c1_0.png" width="662" height="662">
+   <img align="center" src="demo/Infogan_128x128+predictor/tony.jpg" width="207" height="201"><img align="center" src="demo/img_varied_c1_0.png" width="662" height="662">
    
 Some meaningful mapping between one of the continuous varying components
  and the rotation of the faces can be seen but the results are not satisfying
