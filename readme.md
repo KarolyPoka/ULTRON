@@ -9,7 +9,7 @@ We are using the Celeba dataset and a significantly smaller dataset of Tony Star
 
 
 2. Test dataset:
-* any pictures we can generate
+* any pictures we want to generate
 
 ## Network architecture
 
