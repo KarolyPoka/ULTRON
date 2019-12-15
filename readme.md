@@ -9,7 +9,12 @@ We would like to aim data augmentation with GAN network structure. The plan is t
 * cudnn 7.6.0
 * tensorboard 2.0.0
 
-
+## How to run script for training/predictor tuning
+Use the Best Model from the 'DAPGAN implementation' folder :
+```python
+python Main2.py
+```
+To switch between training and tuning outcomment or change the code by opening it.
 
 ## Dataset
 We are using the Celeba dataset and a significantly smaller dataset of Tony Stark to demonstrate the results. Our goal is to generate diverse images about Tony Stark for example different hair style, eye color, age, gender etc.
@@ -100,9 +105,6 @@ Some meaningful mapping between one of the continuous varying components
 Reconstructed Images:
 <img align="center" src="doc/Infogan_128x128+predictor/tony2.jpg" width="207" height="201"><img align="center" src="demo/Infogan_128x128+predictor/tony2_varied_c2_121.png" width="662" height="662">
 
----
-References: 
+## Result with Info+Be GAN
 
-[1] Xi Chen, Yan Duan, Rein Houthooft, John Schulman, Ilya Sutskever, Pieter
- Abbeel: "InfoGAN: Interpretable Representation Learning by
-Information Maximizing Generative Adversarial Nets", https://arxiv.org/abs/1606.03657
+
