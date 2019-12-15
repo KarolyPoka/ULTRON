@@ -2,15 +2,23 @@
 ## Our goal
 We would like to aim data augmentation with GAN network structure. The plan is to implement an extended InfoGAN structure which is capable to generate diverse face images by auto fine tuning appropriate latent parameters.
 
-## Dataset
-We are using the Celeba dataset and a significantly smaller dataset of Tony Stark to demonstrate the results. Our goal is to generate diverse images about Tony Stark for example different hair style, eye color etc.
-1. Celeba dataset (200K images):
-* 70% --> Training data
-* 20% --> Test data
-* 10% --> Validation data
+## Dependencies
+* python 3.7
+* pytroch 1.2.0
+* pytroch_ssim 0.1
+* cudnn 7.6.0
+* tensorboard 2.0.0
 
-2. TonyStark dataset:
-* 100% for demonstration
+
+
+## Dataset
+We are using the Celeba dataset and a significantly smaller dataset of Tony Stark to demonstrate the results. Our goal is to generate diverse images about Tony Stark for example different hair style, eye color, age, gender etc.
+1. Celeba dataset (200K images):
+* 50% --> Training data (training time reduction reasons)
+
+
+2. Test dataset:
+* any pictures we want to generate
 
 ## Network architecture
 
@@ -75,7 +83,7 @@ After we achieved a useful mapping between image parameters and code
   CelebA. With smaller modifications we managed to generate the results
    presented below.
    
-   <img align="center" src="demo/tony.jpg" width="207" height="201"><img align="center" src="demo/img_varied_c1_0.png" width="662" height="662">
+   <img align="center" src="demo/Infogan_128x128+predictor/tony.jpg" width="207" height="201"><img align="center" src="demo/img_varied_c1_0.png" width="662" height="662">
    
 Some meaningful mapping between one of the continuous varying components
  and the rotation of the faces can be seen but the results are not satisfying
@@ -86,6 +94,11 @@ Some meaningful mapping between one of the continuous varying components
       hyperparameter optimization may also be needed to elevate the quality
        of the generated images.
 
+## Results with InfoGAN
+<img align="center" src="IngoGAN own implementation/celeba128x128_onlyInfoGAN/Losses_after 100 epochs.png" width="207" height="201">
+
+Reconstructed Images:
+<img align="center" src="demo/Infogan_128x128+predictor/tony2.jpg" width="207" height="201"><img align="center" src="demo/Infogan_128x128+predictor/tony2_varied_c2_121.png" width="662" height="662">
 
 ---
 References: 
