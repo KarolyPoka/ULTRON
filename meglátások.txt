@@ -1,2 +1,0 @@
--zajjal terhelt modell tesztelése zaj/15 100 epoch
--bemeneti adatok normálása lehet kimaradt
