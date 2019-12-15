@@ -53,7 +53,7 @@ Our network uses this generator-discriminator-encoder approach with a small
         to recover the latent vector of the generated pictures and calculate
          the loss of the encoder according to the difference between the input
           vector and recovered one.
- <img align="center" src="demo/diagram.png" width="640" height="360">
+ <img align="center" src="doc/diagram.png" width="640" height="360">
  
  After training, the encoder and the generator can be used as follows:
  * Feed the encoder with an image you want to modify. It will grant you the
@@ -69,7 +69,7 @@ Because of the complexity of the above described architecture we started with
   the latent vector: one categorical (one-hot encoded) component with ten
    classes (hoping it will represent the digits after training) and two
     continuously varying component.
-    <img align="left" src="demo/mnist_c1.png" width="342" height="342"><img align="left" src="demo/mnist_c2.png" width="342" height="342">
+    <img align="left" src="doc/mnist_c1.png" width="342" height="342"><img align="left" src="doc/mnist_c2.png" width="342" height="342">
     
  As one can see the network generates images with great quality. The
   generator learned that the different digits can be easily mapped into the
@@ -83,7 +83,7 @@ After we achieved a useful mapping between image parameters and code
   CelebA. With smaller modifications we managed to generate the results
    presented below.
    
-   <img align="center" src="demo/Infogan_128x128+predictor/tony.jpg" width="207" height="201"><img align="center" src="demo/img_varied_c1_0.png" width="662" height="662">
+   <img align="center" src="doc/Infogan_128x128+predictor/tony.jpg" width="207" height="201"><img align="center" src="doc/img_varied_c1_0.png" width="662" height="662">
    
 Some meaningful mapping between one of the continuous varying components
  and the rotation of the faces can be seen but the results are not satisfying
