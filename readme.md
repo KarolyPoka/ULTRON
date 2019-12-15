@@ -2,6 +2,15 @@
 ## Our goal
 We would like to aim data augmentation with GAN network structure. The plan is to implement an extended InfoGAN structure which is capable to generate diverse face images by auto fine tuning appropriate latent parameters.
 
+## Dependencies
+* python 3.7
+* pytroch 1.2.0
+* pytroch_ssim 0.1
+* cudnn 7.6.0
+* tensorboard 2.0.0
+
+
+
 ## Dataset
 We are using the Celeba dataset and a significantly smaller dataset of Tony Stark to demonstrate the results. Our goal is to generate diverse images about Tony Stark for example different hair style, eye color, age, gender etc.
 1. Celeba dataset (200K images):
