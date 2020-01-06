@@ -8,15 +8,16 @@
 \title{Controlled human face synthesis with\\
 	 \space Generative Adversarial Network}
 
-\author[Póka,Hornyák,Szemenyei]
-	{Károly Bence Póka$^1$,
-       Szabolcs Hornyák$^2$and
-        Márton Szemenyei$^2$
+\author[Hornyák,Póka,Szemenyei]
+       {Szabolcs Hornyák$^1$,
+        Károly Bence Póka$^2$ and
+        Márton Szemenyei$^3$
         \\
-        $^1$ Department of Measurement and Information Systems,
+        $^1$ Msc student of the Department of Measurement and Information Systems,
              Budapest, Hungary\\
-        $^2$ Department of Control Engineering and Information Technology,
+        $^2$ Msc student of the Department of Control Engineering and Information Technology,
         Budapest, Hungary\\
+        $^3$ PhD student of the Department of Control Engineering and Information Technology,
        }
 %for including postscript figures
 \usepackage[pdftex]{graphicx}
@@ -46,12 +47,7 @@
 \maketitle
 
 \begin{abstract}
-Classical data augmentation techniques are not sufficient for facial recognition problems with small datasets. In this paper we present our work aiming %aimed
-to develop generative models for data augmentation. We studied several GANs that provide control over the features of the generated images, then implemented %tried to implement 
-a model that can be used for altering attributes of real images. We experimented with multiple architectures, and studied the effects of certain loss functions and the practical limits of image recovery. %Our attempts moved towards the aforementioned goal but was not reached during the semester. 
-Finally, %At last 
-we found, but did not come to thoroughly examine great methods to improve the quality of the generated images. We aim to %will 
-continue to develop our solution with these methods and the experience gained from the project.
+Classical data augmentation techniques are not sufficient for facial recognition problems with small datasets. In this paper we present our work aimed to develop generative models for data augmentation. We studied several GANs that provide control over the features of the generated images, then tried to implement a model that can be used for altering attributes of real images. We experimented with multiple architectures, studied the effects of certain loss functions and the practical limits of image recovery. Our attempts moved towards the aforementioned goal but was not reached during the semester. At last we found but did not come to thoroughly examine great methods to improve the quality of the generated images. We will continue to develop our solution with these methods and the experience gained from the project.
 
 %\begin{classification} % according to http://www.acm.org/class/1998/
 %\CCScat{I.3.3}{Computer Graphics}{Line and Curve Generation}
@@ -61,31 +57,22 @@ continue to develop our solution with these methods and the experience gained fr
 
 \section{Introduction}
 
-Facial recognition is a popular field of deep learning nowadays. Numerous methods and network architectures have been developed, %vessző
-and applications range from authentication and security to diagnosing certain medical conditions.
+Facial recognition is a popular field  of deep learning nowadays. Numerous methods and network architectures have been developed and applications range from authentication and security to diagnosing certain medical conditions.
 
-One of the main problems %missing s
-of deep learning applications is shortage of data, %data shortage, 
-and it is also present %frequent 
-in facial recognition. For example, %vessző
-to train a neural network to recognize the rightful owner of the car it is embedded into would require an impossible amount of image data from the driver. The problem can be addressed by using %use of 
-transfer learning methods and/or data augmentation techniques. While transfer learning is a great way to exploit the capabilities of pretrained models, changes in facial attributes such as growing a beard or wearing %getting 
-glasses would require the system to adapt by retraining itself. Use of data augmentation to generate new % "generate new" added
-faces the same problem because its image transformations do not alter the features of the given image.
+One of the main problem of deep learning applications is data shortage, and it is also frequent in facial recognition. For example to train a neural network to recognize the rightful owner of the car it is embedded into would require an impossible amount of image data from the driver. The problem can be addressed by use of transfer learning methods and/or data augmentation techniques. While transfer learning is a great way to exploit the capabilities of pretrained models, changes in facial attributes such as growing a beard or getting glasses would require the system to adapt by retraining itself. Use of data augmentation faces the same problem because its image transformations do not alter the features of the given image.
 
-Our solution is aimed towards generative data augmentation to address the above mentioned problems. We examined and extended improved versions of the InfoGAN architecture to generate and regenerate high quality images, %vessző 
-and controlling their features in the latent space. This approach enables the original dataset to be augmented in a meaningful way by % vessző helyett by
-generating images of the same face with different features. Since %Because 
-components of the latent vector can be connected to facial attributes, data augmentation becomes the exploration of the latent space in different directions.
+Our solution is aimed towards generative data augmentation to address the above mentioned problems. We examined and extended improved versions of the InfoGAN architecture to generate and regenerate high quality images and controlling their features in the latent space. This approach enables the original dataset to be augmented in a meaningful way, generating images of the same face with different features. Because components of the latent vector can be connected to facial attributes, data augmentation becomes the exploration of the latent space in different directions.
 
-After the theoretical basis of generative networks, %vessző 
-we list the existing GAN architectures that provide control over image attributes. Then, %vessző 
-we describe our extensions and modifications made to these architectures and present the results.
+After the theoretical basis of generative networks we list the existing GAN architectures that provide control over image attributes. Then we describe our extensions and modifications made to these architectures and present the results.
 
-% A Dataset-et betettem a development fejezet alá első subsection-nek
+
+\section{CelebA dataset}
+
+For the training of every model we used the Large-scale CelebFaces Attributes (CelebA) dataset. This set contains 202599 celebrity images, each with 40 attribute annotation but we only used the pure cropped images without annotation. CelebA has a large diversity and quantity. We can find faces with glasses, in various poses and with different mimics. The cropped size of the images is 178x218 which seems poor but the dilemma of the generation size can be easily a memory consuming problem.
+
 
 \section{Basic theory of GANs}
-The abbreviation "GAN" stands for Generative Adversarial Network and it was published by Goodfellow et al.~\cite{goodfellow2014generative} in 2014. It comprises of a generator and a discriminator network. These networks compete during training:
+The abbreviation "GAN" stands for Generative Adversarial Network and it was published by Goodfellow et al. \cite{goodfellow2014generative} in 2014. It comprises of a generator and a discriminator network. These networks compete during training:
 
 \begin{itemize}
 	\item the objective of the discriminator is to distinguish between real and generated images,
@@ -101,60 +88,38 @@ These opposing objectives can be formulated as:
 \end{aligned}
 \end{equation}
 
-During training, %vessző 
-we alternate between $k$ steps of optimizing the discriminator and one step of optimizing the generator network, where $k$ is a hyperparameter usually set to 1.
+During training we alternate between $k$ steps of optimizing the discriminator and one step of optimizing the generator network, where $k$ is a hyperparameter usually set to 1.
 
-The GAN architecture provided significantly %much 
-better results than %then 
-previous methods. The downside of the "vanilla" GAN architecture is that the representation of image features in the latent space become highly entangled~\cite{radford2015unsupervised}, hence any change made to the latent vector will affect %effect 
-multiple attributes of the generated image. Since %Because 
-the basic architecture of GANs does not provide control over the features of the generated images, %vessző 
-we chose %looked for 
-more advanced architectures.
+The GAN architecture provided much better results then previous methods. The downside of the "vanilla" GAN architecture is that the representation of image features in the latent space become highly entangled \cite{radford2015unsupervised}, hence any change made to the latent vector will effect multiple attributes of the generated image. Because the basic architecture of GANs does not provide control over the features of the generated images we looked for more advanced architectures.
 
 
 \subsection{InfoGAN}
 
-The first network we examined was the InfoGAN by Chen et al.~\cite{chen2016infogan} and some of its improved versions~\cite{10.1007/978-3-319-78452-6_5,mirza2014conditional}. This generative architecture attempts to control the features of the generated images via so called code components concatenated to the latent (noise) vector. In order to encourage the generator to connect these code components to meaningful image features (to learn a disentangled representation), %vessző 
-the authors introduced a new criteria in the generator's loss function: the generator should maximize the mutual information between the input latent vector and the generated image.
+The first network we examined was the InfoGAN by Chen et al. \cite{chen2016infogan} and some of its improved versions \cite{10.1007/978-3-319-78452-6_5}\cite{mirza2014conditional}. This generative architecture attempts to control the features of the generated images via so called code components concatenated to the latent (noise) vector. In order to encourage the generator to connect these code components to meaningful image features (to learn a disentangled representation) the authors introduced a new criteria in the generator's loss function: the generator should maximize the mutual information between the input latent vector and the generated image.
 
 The total loss of the generator ($L_G$) is defined as:
 
 \begin{equation}\label{g_loss}
-L_G = -L_D(x_G) - \lambda I([z,c], x_G), %vessző
+L_G = -L_D(x_G) - \lambda I([z,c], x_G)
 \end{equation}
-where $L_D(x_G)$ is the loss of the discriminator for generated images, $I([z,c], x_G)$ is the mutual information between the latent vector and the generated image and %vessző helyett and 
-$\lambda$ is a new hyperparameter, typically 1.
+where $L_D(x_G)$ is the loss of the discriminator for generated images, $I([z,c], x_G)$ is the mutual information between the latent vector and the generated image, $\lambda$ is a new hyperparameter, typically 1.
 
-The InfoGAN architecture provides great control over the image features if the type and number of code components are suited to the underlying distribution of the dataset (e.g. use of a categorical component with 10 categories for MNIST). The downside of this architecture is the relative poor quality of the generated images for complex data, %vessző 
-such as faces from the CelebA dataset. The architectures described below attempt %s törölve 
-to address this problem and %to nem kell 
-further reduce %remove 
-the entanglement of features in the latent space.
+The InfoGAN architecture provides great control over the image features if the type and number of code components are suited to the underlying distribution of the dataset (e.g. use of a categorical component with 10 categories for MNIST). The downside of this architecture is the relative poor quality of the generated images for complex data such as faces from the CelebA dataset. The architectures described below attempts to address this problem and to further remove the entanglement of features in the latent space.
 
 
 \subsection{ST-GAN}
 \label{sec:propDet}
 
-One improvement of the InfoGAN architecture is called Semantic Transformation GAN~\cite{liu2019stgan}. This networks aims to remove the complicated procedure of approximating the mutual information by introducing an encoder network. The task of this encoder network is to reconstruct the latent vector presented to the generator from the generated image. % it generated.
-This can only be achieved if the generator preserves the latent vector's information in the generated images. In other words, perfect $[z,c]$ reconstruction can only be achieved if the information flow from the input of the generator to the output of the encoder is lossless, which %and it also 
-means that the generator maps all the information of the latent vector into the generated images.
+One improvement of the InfoGAN architecture is called Semantic Transformation GAN \cite{liu2019stgan}. This networks aims to remove the complicated procedure of approximating the mutual information by introducing an encoder network. The task of this encoder network is to reconstruct the latent vector presented to the generator from the image it generated. This can only be achieved if the generator preserves the latent vector's information in the generated images. In other words, perfect $[z,c]$ reconstruction can only be achieved if the information flow from the input of the generator to the output of the encoder is lossless, and it also means that the generator maps all the information of the latent vector into the generated images.
 
-%One can use t
-The ST-GANs encoder network can be used %inserted 2can be used" 
-to map an existing image into the latent space, then alter its code components, %vessző 
-and feed the altered vector to the generator in order to generate an altered version of the original image. With the above described architecture, %vessző 
-the quality of the altered images are not guaranteed. To overcome this problem, %vessző 
-the authors of the paper used the reconstructed $[z,c]$ vector from the encoder, altered it ($[z,c']$) and fed it %it kell
-back into the generator during training, and defined another objective for the network to improve the quality of the altered images.
+One can use the ST-GANs encoder network to map an existing image into the latent space, then alter its code components and feed the altered vector to the generator in order to generate an altered version of the original image. With the above described architecture the quality of the altered images are not guaranteed. To overcome this problem the authors of the paper used the reconstructed $[z,c]$ vector from the encoder, altered it ($[z,c']$) and fed back into the generator during training, and defined another objective for the network to improve the quality of the altered images.
 
-This architecture is a significant improvement of InfoGAN, but it has a relatively large number of subnetworks and loss functions. % a vége ennek a mondatnak kicsit suta volt 
-The latter leads to conflicting training objectives and slower convergence.
+This architecture is a significant improvement of InfoGAN, but it has a relatively large number of subnetworks to train and loss functions. Latter leads to conflicting training objectives and slower convergence.
 
 \begin{figure*}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{pic/MS-SSIM}
-	\caption{Multi-scale SSIM system, L: low-pass filter, 2$\downarrow$: downsampling by 2 (image source:~\cite{1292216})}
+	\caption{Multi-scale SSIM system, L: low-pass filter, 2$\downarrow$: downsampling by 2 (image source: \cite{1292216})}
 	\label{fig:ms_ssim}
 \end{figure*}
 
@@ -162,52 +127,23 @@ The latter leads to conflicting training objectives and slower convergence.
 \subsection{BEGAN}
 \label{sec:digErr}
 
-A further improved InfoGAN-based architecture is called the Boundary Equilibrium GAN~\cite{berthelot2017began}.
+A further improved InfoGAN-based architecture is called the Boundary Equilibrium GAN \cite{berthelot2017began}.
 
-Since %Because 
-at the beginning of the training the generator creates images greatly different from the real images, %vessző 
-the discriminator has an advantage. To overcome this, %vessző 
-and ensure "fair play" between these networks, %vessző 
-the BEGAN architecture introduces a balancing process, hence the name "boundary equilibrium".
-Moreover, % kötőszó
-the BEGAN architecture also uses the idea of latent vector reconstruction to remove the need to approximate the true mutual information, but uses a whole autoencoder network as a discriminator.
+Because at the beginning of the training the generator creates images greatly different from the real images the discriminator has an advantage. To overcome this and assure "fair play" between these networks the BEGAN architecture introduces a balancing process, hence the name "boundary equilibrium".
 
-The discriminator, as an autoencoder, %vessző 
-has the objective to perform good on real images and bad on generated ones, hence the quality of the reconstruction can be used to discriminate between real and fake images. With %By 
-this discriminator implementation, the generator is heavily encouraged to produce images with same distribution and same properties as real ones, resulting in better results than the %the kell 
-previous architectures can achieve.
+The BEGAN architecture also uses the idea of latent vector reconstruction to remove the need to approximate the true mutual information, but uses a whole autoencoder network as a discriminator.
 
-The only shortcoming of this architecture is that it cannot be used to alter features of real images. Its autoencoder network cannot be used to reconstruct the $[z,c]$ latent vector presented to the generator, %vessző 
-because it learns a completely %totally 
-different representation of the data. This was one of the %our 
-main problems %többes szám 
-using the BEGAN architecture and we had to extend it in order to both reach our goal and exploit the BEGANs capabilities to generate high quality images.
+The discriminator, as an autoencoder has the objective to perform good on real images and bad on generated ones, hence the quality of the reconstruction can be used to discriminate between real and fake images. By this discriminator implementation, the generator is heavily encouraged to produce images with same distribution and same properties as real ones, resulting in better results than previous architectures can achieve.
+
+The only shortcoming of this architecture is that it cannot be used to alter features of real images. Its autoencoder network cannot be used to reconstruct the $[z,c]$ latent vector presented to the generator because it learns a totally different representation of the data. This was one of our main problem using the BEGAN architecture and we had to extend it in order to both reach our goal and exploit the BEGANs capabilities to generate high quality images.
 
 
-\section{Development} %túl hosszú section név
+\section{The whole development process}
 %\label{appendix:development}
-
-
-\subsection{Dataset}
-
-For the training of every model, %vessző 
-we used the Large-scale CelebFaces Attributes (CelebA) dataset. This set contains 202599 celebrity images, each with 40 attribute annotations, %vessző és többesszám 
-however, %but csúnya 
-we only used the pure cropped images without annotation. CelebA has a large diversity and quantity: %tőmondat 
-It contains %We can find 
-faces with glasses, in various poses and with different facial expressions. %mimics. 
-The cropped size of the images is $178\times 218$, %vessző + a \times x helyett 
-which seems poor, still %vessző, but csúnya 
-the dilemma of the generation size can be easily a memory consuming problem. % Ez mérsékelten értelmes így...
 
 \subsection{InfoGAN-based models}
 
-At first, to get familiar with the problem %we tried 
-to be solved, %vessző + be solved 
-we started the development process by %with 
-examining the original InfoGAN paper and existing implementations. Our first network was a simple InfoGAN implementation based on these sources~\cite{chen2016infogan}. To start with% from 
-a simple problem, %vessző 
-we first generated MNIST-like images. The results were promising, because we successfully reproduced the results presented in the InfoGAN paper for MNIST.
+At first, to get familiar with the problem we tried to solve we started the development process with examining the original InfoGAN paper and existing implementations. Our first network was a simple InfoGAN implementation based on these sources \cite{chen2016infogan}. To start from a simple problem we generated MNIST-like images. The results were promising, because we successfully reproduced the results presented in the InfoGAN paper for MNIST.
 
 \begin{figure}[!htb]
 	\centering
@@ -216,10 +152,7 @@ we first generated MNIST-like images. The results were promising, because we suc
 	\label{fig:mnist_results}
 \end{figure}
 
-The next step was to switch datasets, %vessző, többes szám 
-and %to 
-try to generate controlled images of celebrities. We started with a picture size of $64\times 64$ pixels, %vessző, times és többes szám 
-and managed to generate mid-quality images.
+The next step was to switch dataset and to try to generate controlled images of celebrities. We started with a picture size of 64x64 pixel and managed to generate mid-quality images.
 
 \begin{figure}[!htb]
 	\centering
@@ -229,28 +162,17 @@ and managed to generate mid-quality images.
 \end{figure}
 
 \subsection{Our extensions and improvements}
+The main goal was impossible to achieve with the existing architectures, because we wanted to fine-tune a given picture, but the generator has a multidimensional vector input. Our idea was to train a separated predictor to get noise and code vectors from a given pictures.  At first two questions come up: what the predictor net’s output should be? Could be whether we can use the Discriminator as a predictor, because it can give us a categorical and continuous code from a given image. The answer is not. The Discriminator was trained to give a judgment about the classification (True or Fake), and the appropriate code vectors. We can not train the Discriminator to give the noise vector also, because that trick would change the training results in a bad way. So, let’s make a Noise Predictor net.
 
-The main goal was impossible to achieve with the existing architectures, because we wanted to fine-tune a given picture, but the generator has a multidimensional vector input. Our idea was to train a separate %d nem kell 
-predictor to get noise and code vectors from a given pictures. At first, %vessző 
-two questions come up: what the predictor net’s output should be, and can the Discriminator be used as a predictor, since %itt több mindent is javítottam
-it can return %can give us 
-a categorical and continuous code from a given image. The answer is not. The Discriminator was trained to give a judgment about the classification (Real or Fake), and the appropriate code vectors. We cannot train the Discriminator to give the noise vector as well, since %also, because 
-that trick caused instability during training in our experiments. %would change the training results in a bad way. %So, let’s make a Noise Predictor net.
-For this reason, a separate Noise Predictor network was added to the architecture.
+We used a network based on a same architecture as the Generator has but with noise, categorical and continuous code as outputs. Our network object has on opportunity to train only the predictor network. We trained the InfoGan first and then fine-tuned the Noise Predictor with the Generator weights. At first, we used the built-in pytorch MSE (Mean Square Error) loss function to compute the loss between the generated image based on the predictor’s output and the original image. The mathematically distance between the pixels does not always show the visible difference for humans between two pictures. Therefore, we used the Differentiable Multi-Scale Structural Similarity (SSIM) index to calculate the predictor’s loss.
 
-We used a network based on a same architecture as the Generator, %nem a diszkriminátor?
-but with noise, categorical and continuous code as outputs. Our network object has on opportunity to train only the predictor network. %Az uccsó mondatot nem értem
-We trained the InfoGan first, %vessző 
-then fine-tuned the Noise Predictor with the Generator weights. At first, we used the built-in PyTorch MSE (Mean Square Error) loss function to compute the loss between the generated image based on the predictor’s output and the original image. The mathematical %ly 
-distance between the pixels does not always correspond to %show 
-the visible difference for humans between two pictures. Therefore, we used the Differentiable Multi-Scale Structural Similarity (SSIM) index to calculate the predictor’s loss. %Ehhez jó lenne egy hivatkozás
+
 
 \begin{displaymath}
 \mathrm{MS\mbox{-}SSIM}(x,y) = I_M(x,y)^{\alpha_M} \prod_{j=1}^{M} C_j(x,y)^{\beta_j}S_j(X,y)^{\gamma_j}
 \end{displaymath}
 
-Obviously, the goal is for the network to learn to produce visually pleasing images. To the root of the MS-SSIM is the simple SSIM function, %. Where for pixel p is defined as 
-which is defined for the pixel $p$ as follows:
+Obviously, the goal is for the network to learn to produce visually pleasing images. To the root of the MS-SSIM is the simple SSIM function. Where for pixel p is defined as 
 
 \begin{equation}
 \begin{aligned}
@@ -259,33 +181,30 @@ which is defined for the pixel $p$ as follows:
 \end{aligned}
 \end{equation}
 
-Means ($\mu$) and standard deviations ($\sigma$) are computed using %with 
-a Gaussian filter with standard deviation $\sigma_G$. The max output of this metric %s 
-is 1 when the two inputs are similar to each other and the minimum is 0 when they are not. In the training loop we can use the loss function like this:
+Means ($\mu$) and standard deviations ($\sigma$) are computed with a Gaussian filter with standard deviation $\sigma_G$. The max output of this metrics is 1 when the two inputs are similar to each other and the minimum is 0 when they are not. In the training loop we can use the loss function like this:
 
 \begin{equation}
 \mathcal{L}^{\mathrm{SSIM}}(P) = \frac{1}{N}\sum_{p \in P}1-\mathrm{SSIM}(p)
 \end{equation}
 
-where the $p$ is the pixel, %vessző 
-and we are looking at its neighbourhood as large as the support of the G ($\sigma_G$). So, we can write the loss as
+where the p is the pixel and we are looking at its neighbourhood as large as the support of the G ($\sigma_G$). So, we can write the loss as
 
 \begin{equation}
 \mathcal{L}^{\mathrm{SSIM}}(P) = 1-\mathrm{SSIM}(\tilde{p})
 \end{equation}
 
-%because 
-due to the convolutional nature of the network, where the $\tilde{p}$ is the centre pixel of patch $P$. 
-The processed quality depends on the size of $\sigma_G$, but rather then fine-tuning it, %vessző 
-we can use MS-SSIM. For further information, visit the cited source of Nvidia Resource~\cite{zhao2015loss}.
+because the convolutional nature of the network, where the $\tilde{p}$ is the centre pixel of patch P. 
+The processed quality depends on the size of $\sigma_G$, but rather then fine-tuning it we can use MS-SSIM. Further information you can visit the cited source of Nvidia Resource \cite{zhao2015loss}.
 
 \begin{equation}
 \mathrm{MS\mbox{-}SSIM}(p) = l_M^\alpha \cdot \prod_{j=1}^{M}cs_j^{\beta_j}(p)
 \end{equation}
 
+
+
 \subsubsection{Extending InfoGAN with noise-vector recovery}
 
-The InfoGAN implementation we based our work on implements the code recovery and discriminator with the use of a shared network: it comprises of the convolutional layers that process the real and fake images, while the code recovery as well as the decision making (discriminator functionality) comes after this common part.
+The InfoGAN implementation we based our work on implements the code recovery and discriminator with the use of a shared network: it comprises of the convolutional layers that process the real and fake images, and the code recovery as well as the decision making (discriminator functionality) comes after this common part.
 
 \begin{figure}[!htb]
 	\centering
@@ -294,12 +213,15 @@ The InfoGAN implementation we based our work on implements the code recovery and
 	\label{fig:infogan_simple_noise}
 \end{figure}
 
-Since %Because 
-our goal was to alter existing images with our network, the first extension we added to the original InfoGAN was a noise-recovering FC-layer after the shared network, similar to the one used for code recovery. We defined the same L2-loss for this noise predictor just like we did for code recovery, and simply added it to the total info-loss with a $0.1$ coefficient.
+
+
+Because our goal was to alter existing images with our network, the first extension we added to the original InfoGAN was a noise-recovering FC-layer after the shared network, similar to the one used for code recovery. We defined the same L2-loss for this noise predictor just like we did for code recovery, and simply added it to the total info-loss with a 0.1 coefficient.
+
+
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\linewidth]{pic/added_noise}
+	\includegraphics[width=\linewidth]{pic/added_noise2}
 	\caption{Improved convergence with disruptive noise on the discriminator's input}
 	\label{fig:added_noise}
 \end{figure}
@@ -311,16 +233,21 @@ our goal was to alter existing images with our network, the first extension we a
 	\label{fig:tony_regen}
 \end{figure}
 
+
 \subsubsection{Suppressing the discriminator with added noise}
 
-After multiple training sessions with the extended InfoGAN, %vessző 
-we realized that at the beginning of the training the discriminator gains too much advantage. The loss of the generator starts from a high value and decreases slowly, %vessző 
-because it cannot compete with the discriminator.
+After multiple training sessions with the extended InfoGAN we realized that at the beginning of the training the discriminator gains too much advantage. The loss of the generator starts from a high value and decreases slowly because it cannot compete with the discriminator.
 
-To disrupt the discriminator, %vessző 
-we added Gaussian noise to its input. By controlling the power of the added noise, %vessző 
-we can suppress the discriminator to make room for improvement of the generator.
+To disrupt the discriminator we added Gaussian noise to its input. By controlling the power of the added noise we can suppress the discriminator to make room for improvement of the generator.
+
+
+
+
+
+
+
 We started our first hyperparameter optimization session at this point. The hyperparameters and their sets of values were the following:
+
 
 \begin{itemize}
 	\item Image size: \{32x32, 64x64\}
@@ -332,7 +259,7 @@ We started our first hyperparameter optimization session at this point. The hype
 	\item Epochs: \{15, 20, 42, 50, 100\}
 \end{itemize}
 
-As a result of this optimization process we learned that: 1) one learning rate for all subnetworks may not be the best choice, 2) the image size and the size of the latent vector should change together to maintain quality, 3) the batch size largely effects the quality of the generated images, 4) the higher value of noise power is needed for balanced training.
+As a result of this optimization process we learned that: 1) one learning rate for all subnetworks may not be the best choice, 2) the image size and the size of the latent vector should change together to maintain quality, 3) batch size largely effects the quality of the generated images, 4) the higher value of noise power is needed for balanced training.
 
 Another problem was the recovery of the noise part of the latent vector. Convergence of noise recovery slowed down then stalled in a state that did not provide sufficient image recovery.
 
@@ -343,10 +270,13 @@ Another problem was the recovery of the noise part of the latent vector. Converg
 	\label{fig:infogan_noise}
 \end{figure}
 
+
+
 \subsubsection{Separating the discriminator from latent vector recovery network}
 
-After we extended the original InfoGAN architecture and run multiple training sessions, %vessző 
-we decided to separate the discriminator from the latent vector predictor. We hypothesized that the shared layers cannot be optimized if they had to adapt according to three different objectives and loss functions.
+After we extended the original InfoGAN architecture and run multiple training sessions we decided to separate the discriminator from the latent vector predictor. We hypothesized that the shared layers cannot be optimized if they had to adapt according to three different objectives and loss functions.
+
+
 
 \begin{figure}[!htb]
 	\centering
@@ -362,6 +292,8 @@ we decided to separate the discriminator from the latent vector predictor. We hy
 	\label{fig:best2}
 \end{figure}
 
+
+
 % This is here because this way it will be on the top of the correct page
 \begin{figure*}[!ht]
 	\centering
@@ -370,35 +302,38 @@ we decided to separate the discriminator from the latent vector predictor. We hy
 	\label{fig:hyperparamteres}
 \end{figure*}
 
-First, we removed the noise recovery layer and created a new, independent network. This way only two tasks %többes szám 
-remained for the discriminator: making a decision about the input image (real or fake), %vessző 
-and %to 
-recovering its control code components (for mutual information maximization).
 
-The next step was to extend the predictor network to predict the whole latent vector of real images that are desired to be altered. The resulting architecture can be seen in Fig.~\ref{fig:infogan_noise}. This extended predictor network should become, in theory, the inverse of the generator, effectively forming an autoencoder with it.
+First, we removed the noise recovery layer and created a new, independent network. This way only two task remained for the discriminator: making a decision about the input image (real or fake) and to recover its control code components (for mutual information maximization).
 
-This resulted in higher quality images %Results became better 
-with a slightly faster convergence. To further improve the performance of noise recovery, %vessző 
-we experimented with some of the hyperparameters, then tried to approximate the practical limit of noise recovery (see below).
+
+
+The next step was to extend the predictor network to predict the whole latent vector of real images that are desired to be altered. The resulting architecture can be seen in Fig. \ref{fig:infogan_noise}. This extended predictor network should become, in theory, the inverse of the generator, effectively forming an autoencoder with it.
+
+
+
+
+Results became better with a slightly faster convergence. To further improve the performance of noise recovery we experimented with some of the hyperparameters, then tried to approximate the practical limit of noise recovery (see below).
+
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=1\linewidth]{pic/predict_everything}
-	\caption{Best Tony Stark reconstruction with our InfoGAN architecture with separated noise predictor (predict everything)}
+	\caption{Best Tony Stark Reconstructing with our InfoGAN architecture with separated noise predictor (predict everything)}
 	\label{fig:best3}
 \end{figure}
 
+
+
 \subsubsection{Hyperparameter optimization}
 
-During development, %vessző 
-we experimented with multiple architectures and made several extensions to existing implementations, hence our hyperparameter optimization sessions are distributed and made between architectural changes. 
+During development we experimented with multiple architectures and made several extensions to existing implementations, hence our hyperparameter optimization sessions are distributed and made between architectural changes. As we can see 
 
-%As we can see --- Ez itt nincs befejezve
+
 
 \subsubsection{Iterative noise recovery}
 
-To find the limit of the noise recovery to a given generator, %vessző 
-we tried to iteratively approximate the noise vector. The quality of the recovery highly depends on the resolution of the generated images by the generator.\\
+To find the limit of the noise recovery to a given generator we tried to iteratively approximate the noise vector. The quality of the recovery highly depends on the resolution of the generated images by the generator.\\
+
 
 \begin{figure}[!htb]
 	\centering
@@ -407,12 +342,7 @@ we tried to iteratively approximate the noise vector. The quality of the recover
 	\label{fig:tony_iterative}
 \end{figure}
 
-We tried to fine-tune the latent vector with a generator trained on $32\times 32$ images and $64\times 64$ ones, %vessző 
-and the latter one proves our hypothesis. %the theory. 
-We used only the Generator and an Adam optimizer to fine-tune the latent vector. Our goal was to get the appropriate vectors, %vessző 
-which we can feed to the generator for the desired image generation. We found %out 
-that the limit is not yet reached with the noise predictor, %vessző 
-but the generator is also a limiting factor in the recovery process, hence we started to look for ideas to improve image quality.
+We tried to fine-tune the latent vector with a generator trained on 32x32 images and 64x64 ones and the latter one proves the theory. We used only the Generator and an Adam optimizer to fine-tune the latent vector. Our goal was to get the appropriate vectors which we can feed to the generator for the desired image generation. We found out that the limit is not yet reached with the noise predictor but the generator is also a limiting factor in the recovery process, hence we started to look for ideas to improve image quality.
 
 \begin{figure}[!htb]
 	\centering
@@ -421,17 +351,19 @@ but the generator is also a limiting factor in the recovery process, hence we st
 	\label{fig:infogan_ae}
 \end{figure}
 
+
+
+
+
 \subsubsection{InfoGAN-BEGAN hybrids}
 
-After several attempts to improve image quality of the modified InfoGAN architecture, %vessző 
-we looked for new architectural ideas. The search ended with the Boundary Equilibrium GAN and the idea of implementing the discriminator as an autoencoder. We examined and merged this idea into our network.
+After several attempts to improve image quality of the modified InfoGAN architecture we looked for new architectural ideas. The search ended with the Boundary Equilibrium GAN and the idea of implementing the discriminator as an autoencoder. We examined and merged this idea into our network.
 
 \subsubsection{Using an Autoencoder as discriminator}
 
-Borrowing the idea from the BEGAN architecture, %vessző 
-we modified our discriminator to form an autoencoder. We used the layers of discriminator for image encoding, and the layers of the generator for decoding. 
+Borrowing the idea from the BEGAN architecture we modified our discriminator to form an autoencoder. We used the layers of discriminator for image encoding, and the layers of the generator for decoding. 
 
-Unfortunately, the structure of the previously used subnetworks proved to be suboptimal to form an autoencoder. We attempted to make their structure more symmetrical but eventually reached the conclusion that we have to implement the discriminator from scratch.
+Unfortunately, the structure of the previously used subnetworks proved to be suboptimal to form an autoencoder. We tried to make their structure more symmetrical but eventually reached the conclusion that we have to implement the discriminator from scratch.
 
 \subsubsection{Implementing BEGAN and extending it with noise recovery}
 
@@ -441,6 +373,7 @@ After the effectively failed attempt of tailoring the InfoGAN architecture to be
 	\centering
 	\includegraphics[width=\linewidth]{pic/InfoBegan(proper)}
 	\caption{Our implemented structure's losses during training}
+	
 \end{figure}
 
 \begin{figure}[!htb]
@@ -450,12 +383,7 @@ After the effectively failed attempt of tailoring the InfoGAN architecture to be
 	\label{fig:infogan_ae_noise}
 \end{figure}
 
-The generated images had better quality than before, %vessző 
-but we could not control their properties as we originally wanted. We conducted multiple experiments with this network, %vessző 
-and eventually found %out 
-that the base BEGAN implementation may suffer %s 
-from a slight %minimal 
-mode collapse with the given set of hyperparameters.
+The generated images had better quality than before but we could not control their properties as we originally wanted. We conducted multiple experiments with this network and eventually found out that the base BEGAN implementation may suffers from a minimal mode collapse with the given set of hyperparameters.
 
 \begin{figure}[!htb]
 	\centering
@@ -467,9 +395,8 @@ mode collapse with the given set of hyperparameters.
 \subsubsection{Improving image quality with advanced loss functions}
 
 To improve the quality of generated images we looked for advanced loss functions to find more meaningful metrics than MSE.
-The first candidate was the Structural Similarity (SSIM) method. This metric was developed to approximate human perception of image quality, %vessző 
-and comprises of three components: luminance, contrast and structure. This method is used extensively for iterative latent code approximation, %vessző 
-and it proved to be better than MSE for our purposes.
+
+The first candidate was Structural Similarity (SSIM) method. This metric was developed to approximate human perception of image quality and comprises of three components: luminance, contrast and structure. This method is used extensively for iterative latent code approximation and it proved to be better than MSE for our purposes.
 
 \begin{figure}[!htb]
 	\centering
@@ -478,7 +405,7 @@ and it proved to be better than MSE for our purposes.
 
 \end{figure}
 
-To further improve the image quality, especially when generating $128\times 128$ pixel images, we used the Multi-scale Structural Similarity method (Fig.~\ref{fig:ms_ssim}).
+To further improve the image quality, especially when generating 128x128 pixel images, we used the Multi-scale Structural Similarity method (Fig. \ref{fig:ms_ssim}).
 
 \begin{figure}[!htb]
 	\centering
@@ -489,12 +416,11 @@ To further improve the image quality, especially when generating $128\times 128$
 
 We also used these functions to iteratively approximate the to-be-predicted noise vector and the limit of recovery.
 
+
+
 \subsection{Improving image quality of Info-BEGAN with VGG-based image embedding}
 
-After performing experiments %we experimented 
-with multiple quality improving methods, %vessző 
-we found a new and promising one: instead of comparing the original and recovered images pixel-by-pixel, %vessző 
-we can embed them into a feature space and compute their distance in that space.
+After we experimented with multiple quality improving methods we found a new and promising one: instead of comparing the original and recovered images pixel-by-pixel we can embed them into a feature space and compute their distance in that space.
 \\
 
 \begin{figure}[!htb]
@@ -504,31 +430,24 @@ we can embed them into a feature space and compute their distance in that space.
 
 \end{figure}
 
-To implement this kind of image comparison %multiple source 
-\cite{abdal2019image2stylegan} uses the first few layers of the VGG-16 image classification network, %vessző 
-because these convolutional layers can detect low-to-mid level image features and %can 
-create a meaningful latent space.
+To implement this kind of image comparison multiple source \cite{abdal2019image2stylegan} uses the first few layers of the VGG-16 image classification network because these convolutional layers can detect low-to-mid level image features and can create a meaningful latent space.
 
-We modified our image evaluation method to first compute %make 
-this embedding and then compute L2-distance between the resulting vectors. We used the first 23 layers of the feature extractor part, then flattened the $14\times 14\times 512$ sized output.
 
-This idea of using image embedding to determine a meaningful distance metric for images needs further development, %vessző 
-because we see great potential in it but had no time to complete its integration.% of it.
+
+We modified our image evaluation method to first make this embedding then compute L2-distance between the resulting vectors. We used the first 23 layers of the feature extractor part, then flattened the 14x14x512 sized output.
+
+This idea of using image embedding to determine a meaningful distance metric for images needs further development because we see great potential in it but had no time to complete the integration of it.
+
 
 \section{Results}
-The results were not as satisfying as we wanted. It seems the InfoGAN architecture is focused only on the maximization of the mutual information, %vessző 
-and not to produce visually pleasing images. We also noticed that for a good prediction, %vessző 
-the Noise Predictor needs to have a Generator that can produce images with good quality. Also, the resolution is important, because we tried both $64\times 64$ and $128\times 128$ images, and the bigger resolution led to better quality of reconstruction. At this point, %area, %vessző 
-we had to handle a trade-off because generating higher quality images demands significantly %much 
-more compute performance and %or much more 
-training time. We trained our model with a Nvidia TitanX P with 12GB GPU memory. We completed more than 30 trainings and several of them were% was 
-over 30 hours.
+The results were not as satisfying as we wanted. It seems the InfoGAN architecture is focused only on the maximization of the mutual information and not to produce visually pleasing images. We also noticed, that for a good prediction the Noise Predictor needs to have a Generator that can produce images with good quality. Also, the resolution is important, because we tried both 64x64 and 128x128 images, and the bigger resolution led to better quality of reconstruction. At this area we had to handle a trade-off because the better-quality demand much more compute performance or much more training time. We trained our model with a Nvidia TitanX P with 12GB GPU memory. We completed more than 30 training and several of them was over 30 hours.
 
-On our results obviously visible the bad generation and quality caused fault. %Húúú, ezt elég angoltalan
-Some parts of the result pictures contain the information what we want, but overall the generated images are not usable for data augmentation yet.
+
+
+On our results obviously visible the bad generation and quality caused fault. Some part of the result pictures contains the information what we want, but overall the generated images are not usable for data augmentation yet.
 
 \section{Future plans}
-To further improve the generation quality, we aim to further develop the Info-BEGAN architecture and continue experimenting with image embedding. Further hyperparameter optimization is also considered due to lack of time to optimize the latest architecture. We hope we can develop a highly controllable generator on the foundation laid by these extensive experiments conducted during this semester.
+To improve the generation quality, we will try to further develop the Info-BEGAN architecture and continue experimenting with image embedding. Further hyperparameter optimization is also considered due to lack of time to optimize the latest architecture. We hope we can develop a highly controllable generator on the foundation laid by these extensive experiments conducted during this semester.
 
 
 \begin{thebibliography}{1}
