@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.9)  6 JAN 2020 16:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.12.9)  6 JAN 2020 19:38
 entering extended mode
 **./wait2020.tex
 (wait2020.tex
@@ -166,18 +166,18 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ) (wait2020.aux)
 \openout1 = `wait2020.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-
 pdf.mkii"
@@ -201,169 +201,157 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 47.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 46.
 LaTeX Font Info:    Trying to load font information for OT1+ptmcm on input line
- 47.
+ 46.
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1ptmcm.f
 d"
 File: ot1ptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ptmcm on input line
- 47.
+ 46.
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\omlptmcm.f
 d"
 File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+psycm on input line
- 47.
+ 46.
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\omxpsycm.f
 d"
 File: omxpsycm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/psycm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 4
-7.
+6.
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
 
  ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 "
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
 
 
 ("C:\Users\Karcsi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 48.
  [1{C:/Users/Karcsi/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-<pic/MS-SSIM.png, id=8, 1276.77pt x 314.17375pt>
+<pic/MS-SSIM.png, id=13, 1276.77pt x 314.17375pt>
 File: pic/MS-SSIM.png Graphic file (type png)
 <use pic/MS-SSIM.png>
-Package pdftex.def Info: pic/MS-SSIM.png  used on input line 121.
+Package pdftex.def Info: pic/MS-SSIM.png  used on input line 111.
 (pdftex.def)             Requested size: 456.0pt x 112.206pt.
 
 [2]
 <pic/mnist.png, id=19, 514.94261pt x 257.4713pt>
 File: pic/mnist.png Graphic file (type png)
 <use pic/mnist.png>
-Package pdftex.def Info: pic/mnist.png  used on input line 150.
+Package pdftex.def Info: pic/mnist.png  used on input line 144.
 (pdftex.def)             Requested size: 216.0pt x 107.9997pt.
 <pic/1.png, id=20, 963.6pt x 542.025pt>
 File: pic/1.png Graphic file (type png)
 <use pic/1.png>
-Package pdftex.def Info: pic/1.png  used on input line 159.
+Package pdftex.def Info: pic/1.png  used on input line 153.
 (pdftex.def)             Requested size: 216.0pt x 121.49547pt.
  [3 <./pic/MS-SSIM.png> <./pic/mnist.png> <./pic/1.png>]
 <pic/Infogan_diss_predicting.png, id=26, 803.25093pt x 541.27219pt>
 File: pic/Infogan_diss_predicting.png Graphic file (type png)
 <use pic/Infogan_diss_predicting.png>
-Package pdftex.def Info: pic/Infogan_diss_predicting.png  used on input line 21
-1.
+Package pdftex.def Info: pic/Infogan_diss_predicting.png  used on input line 20
+2.
 (pdftex.def)             Requested size: 216.0pt x 145.55078pt.
 <pic/added_noise2.png, id=27, 895.84688pt x 350.05782pt>
 File: pic/added_noise2.png Graphic file (type png)
 <use pic/added_noise2.png>
-Package pdftex.def Info: pic/added_noise2.png  used on input line 224.
+Package pdftex.def Info: pic/added_noise2.png  used on input line 211.
 (pdftex.def)             Requested size: 216.0pt x 84.40016pt.
 <pic/tony_regen.png, id=28, 406.46217pt x 200.21355pt>
 File: pic/tony_regen.png Graphic file (type png)
 <use pic/tony_regen.png>
-Package pdftex.def Info: pic/tony_regen.png  used on input line 231.
+Package pdftex.def Info: pic/tony_regen.png  used on input line 218.
 (pdftex.def)             Requested size: 216.0pt x 106.39677pt.
  [4 <./pic/Infogan_diss_predicting.png> <./pic/added_noise2.png> <./pic/tony_re
 gen.png>]
 <pic/2.png, id=33, 527.72156pt x 541.27219pt>
 File: pic/2.png Graphic file (type png)
 <use pic/2.png>
-Package pdftex.def Info: pic/2.png  used on input line 268.
+Package pdftex.def Info: pic/2.png  used on input line 246.
 (pdftex.def)             Requested size: 216.0pt x 221.5431pt.
 <pic/best1.png, id=34, 664.4825pt x 664.4825pt>
 File: pic/best1.png Graphic file (type png)
 <use pic/best1.png>
-Package pdftex.def Info: pic/best1.png  used on input line 283.
+Package pdftex.def Info: pic/best1.png  used on input line 257.
 (pdftex.def)             Requested size: 216.0pt x 215.9948pt.
 <pic/best2.png, id=35, 664.4825pt x 664.4825pt>
 File: pic/best2.png Graphic file (type png)
 <use pic/best2.png>
-Package pdftex.def Info: pic/best2.png  used on input line 290.
+Package pdftex.def Info: pic/best2.png  used on input line 266.
 (pdftex.def)             Requested size: 216.0pt x 215.9948pt.
 <pic/hyperparamopt.png, id=36, 805.8105pt x 399.894pt>
 File: pic/hyperparamopt.png Graphic file (type png)
 <use pic/hyperparamopt.png>
-Package pdftex.def Info: pic/hyperparamopt.png  used on input line 300.
+Package pdftex.def Info: pic/hyperparamopt.png  used on input line 273.
 (pdftex.def)             Requested size: 456.0pt x 226.30052pt.
  [5 <./pic/2.png> <./pic/best1.png (PNG copy)> <./pic/best2.png (PNG copy)>]
 <pic/predict_everything.png, id=40, 343.2825pt x 343.2825pt>
 File: pic/predict_everything.png Graphic file (type png)
 <use pic/predict_everything.png>
-Package pdftex.def Info: pic/predict_everything.png  used on input line 320.
+Package pdftex.def Info: pic/predict_everything.png  used on input line 284.
 (pdftex.def)             Requested size: 216.0pt x 215.99672pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 335--336
-
- []
-
 <pic/tony_iterative.png, id=41, 389.33765pt x 96.78749pt>
 File: pic/tony_iterative.png Graphic file (type png)
 <use pic/tony_iterative.png>
-Package pdftex.def Info: pic/tony_iterative.png  used on input line 340.
+Package pdftex.def Info: pic/tony_iterative.png  used on input line 301.
 (pdftex.def)             Requested size: 216.0pt x 53.697pt.
-[6 <./pic/hyperparamopt.png> <./pic/predict_everything.png (PNG copy)>]
+ [6 <./pic/hyperparamopt.png> <./pic/predict_everything.png (PNG copy)>]
 <pic/3.png, id=46, 963.6pt x 542.025pt>
 File: pic/3.png Graphic file (type png)
 <use pic/3.png>
-Package pdftex.def Info: pic/3.png  used on input line 349.
+Package pdftex.def Info: pic/3.png  used on input line 310.
 (pdftex.def)             Requested size: 216.0pt x 121.49547pt.
 <pic/InfoBegan(proper).png, id=47, 462.528pt x 346.896pt>
 File: pic/InfoBegan(proper).png Graphic file (type png)
 <use pic/InfoBegan(proper).png>
-Package pdftex.def Info: pic/InfoBegan(proper).png  used on input line 374.
+Package pdftex.def Info: pic/InfoBegan(proper).png  used on input line 331.
 (pdftex.def)             Requested size: 216.0pt x 162.00366pt.
 <pic/BInfoGAN+predictor.png, id=48, 843.15pt x 721.69624pt>
 File: pic/BInfoGAN+predictor.png Graphic file (type png)
 <use pic/BInfoGAN+predictor.png>
-Package pdftex.def Info: pic/BInfoGAN+predictor.png  used on input line 381.
+Package pdftex.def Info: pic/BInfoGAN+predictor.png  used on input line 337.
 (pdftex.def)             Requested size: 216.0pt x 184.88354pt.
 <pic/InfoBegan_random_result.png, id=49, 664.4825pt x 664.4825pt>
 File: pic/InfoBegan_random_result.png Graphic file (type png)
 <use pic/InfoBegan_random_result.png>
-Package pdftex.def Info: pic/InfoBegan_random_result.png  used on input line 39
-0.
+Package pdftex.def Info: pic/InfoBegan_random_result.png  used on input line 34
+6.
 (pdftex.def)             Requested size: 216.0pt x 215.9948pt.
-
-Underfull \vbox (badness 2318) has occurred while \output is active []
-
  [7 <./pic/tony_iterative.png> <./pic/3.png> <./pic/InfoBegan(proper).png> <./p
 ic/BInfoGAN+predictor.png (PNG copy)>]
-Underfull \hbox (badness 1163) in paragraph at lines 399--400
-[]\T1/ptm/m/n/9 The first can-di-date was Struc-tural Sim-i-lar-ity (SSIM)
- []
-
 <pic/InfoBEGAN_tony_recovered_ssim.png, id=56, 449.42906pt x 224.33812pt>
 File: pic/InfoBEGAN_tony_recovered_ssim.png Graphic file (type png)
 <use pic/InfoBEGAN_tony_recovered_ssim.png>
 Package pdftex.def Info: pic/InfoBEGAN_tony_recovered_ssim.png  used on input l
-ine 403.
+ine 358.
 (pdftex.def)             Requested size: 216.0pt x 107.818pt.
 <pic/InfoBegan_varied_result.png, id=57, 664.4825pt x 664.4825pt>
 File: pic/InfoBegan_varied_result.png Graphic file (type png)
 <use pic/InfoBegan_varied_result.png>
-Package pdftex.def Info: pic/InfoBegan_varied_result.png  used on input line 41
-2.
+Package pdftex.def Info: pic/InfoBegan_varied_result.png  used on input line 36
+7.
 (pdftex.def)             Requested size: 216.0pt x 215.9948pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 423--425
+Underfull \hbox (badness 10000) in paragraph at lines 376--378
 
  []
 
@@ -371,12 +359,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 423--425
 File: pic/InfoBEGAN_tony_recovered_VGG16.png Graphic file (type png)
 <use pic/InfoBEGAN_tony_recovered_VGG16.png>
 Package pdftex.def Info: pic/InfoBEGAN_tony_recovered_VGG16.png  used on input 
-line 428.
+line 381.
 (pdftex.def)             Requested size: 216.0pt x 106.73257pt.
 [8 <./pic/InfoBegan_random_result.png (PNG copy)> <./pic/InfoBEGAN_tony_recover
 ed_ssim.png> <./pic/InfoBegan_varied_result.png (PNG copy)> <./pic/InfoBEGAN_to
 ny_recovered_VGG16.png>]
-Underfull \hbox (badness 3668) in paragraph at lines 464--467
+Underfull \hbox (badness 3668) in paragraph at lines 410--413
 []\T1/ptm/m/n/9 X. Chen, Y. Duan, R. Houthooft, J. Schul-man,
  []
 
@@ -384,11 +372,11 @@ Underfull \hbox (badness 3668) in paragraph at lines 464--467
 Here is how much of TeX's memory you used:
  2277 strings out of 492484
  31048 string characters out of 3121148
- 101760 words of memory out of 3000000
+ 100635 words of memory out of 3000000
  6559 multiletter control sequences out of 15000+200000
  47580 words of font info for 85 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,10n,27p,846b,327s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,10n,27p,947b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Karcsi/AppData/Local/Programs/MiKTeX 2.9/fonts/en
 c/dvips/base/8r.enc}<C:/Users/Karcsi/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Karcsi/AppData/Local/Programs/MiKTe
@@ -401,7 +389,7 @@ s/msbm10.pfb><C:/Users/Karcsi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
 /urw/times/utmb8a.pfb><C:/Users/Karcsi/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/urw/times/utmr8a.pfb><C:/Users/Karcsi/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on wait2020.pdf (9 pages, 39147402 bytes).
+Output written on wait2020.pdf (9 pages, 39148337 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
