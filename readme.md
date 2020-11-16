@@ -108,7 +108,7 @@ of the generated images.
 ```
 You can read about the full project and the aproaches we tested here:
 ``` 
-[Paper](paper/Controlled human face synthesis with Generative Adversarial Network.pdf)<br/>
+[Paper](paper/Controlled_human_face_synthesis_with_Generative_Adversarial_Network.pdf)<br/>
 ```
 Only the final result will be presented in the Readme.
 ```
