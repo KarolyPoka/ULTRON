@@ -8,6 +8,14 @@ certain loss functions and the practical limits of image recovery. Finally, we f
 examine great methods to improve the quality of the generated images. We aim to continue to develop our solution
 with these methods and the experience gained from the project.
 
+```
+You can read about the full project and the aproaches we tested here:
+``` 
+[Paper](paper/Controlled_human_face_synthesis_with_Generative_Adversarial_Network.pdf)<br/>
+```
+Only the final result will be presented in the Readme.
+```
+
 ## Dependencies
 * python 3.7
 * pytroch 1.2.0
@@ -105,13 +113,7 @@ underlying probability distribution into our code vector. An extended
 hyperparameter optimization may also be needed to elevate the quality
 of the generated images.
 
-```
-You can read about the full project and the aproaches we tested here:
-``` 
-[Paper](paper/Controlled_human_face_synthesis_with_Generative_Adversarial_Network.pdf)<br/>
-```
-Only the final result will be presented in the Readme.
-```
+
 ## Info+BeGAN
 After the effectively failed attempt of tailoring the InfoGAN
 architecture to be more like BEGAN, we tried the other direction: implementing BEGAN and modifying it to meet our
