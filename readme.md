@@ -105,8 +105,13 @@ underlying probability distribution into our code vector. An extended
 hyperparameter optimization may also be needed to elevate the quality
 of the generated images.
 
-You can read about the full project and the aproaches we tested here: <br/>
+```
+You can read about the full project and the aproaches we tested here:
+``` 
+[Paper](paper/Controlled human face synthesis with Generative Adversarial Network.pdf)<br/>
+```
 Only the final result will be presented in the Readme.
+```
 ## Info+BeGAN
 After the effectively failed attempt of tailoring the InfoGAN
 architecture to be more like BEGAN, we tried the other direction: implementing BEGAN and modifying it to meet our
