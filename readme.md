@@ -103,7 +103,7 @@ Some meaningful mapping between one of the continuous varying components
 <img align="center" src="IngoGAN own implementation/celeba128x128_onlyInfoGAN/Losses_after 100 epochs.png" width="207" height="201">
 
 Reconstructed Images:
-<img align="center" src="doc/tony2.jpg" width="207" height="201"><img align="center" src="demo/Infogan_128x128+predictor/tony2_varied_c2_121.png" width="662" height="662">
+<img align="center" src="doc/InfoBEGAN_tony_recovered_VGG16.png" width="207" height="201"><img align="center" src="doc/InfoBEGAN_tony_recovered_ssim.png" width="662" height="662">
 
 
 
